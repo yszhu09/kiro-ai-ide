@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Claude Code Execution Monitor",
+  "description": "Monitors terminal output for Claude code execution and notifies when execution completes",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/.kiro/terminal-output.log"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "I noticed that Claude code execution has completed in the terminal. Here's a summary of the execution results and any important output you should be aware of."
+  }
+}

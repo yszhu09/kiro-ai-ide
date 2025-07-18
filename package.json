@@ -1,0 +1,25 @@
+{
+  "name": "kiro-ai-ide",
+  "version": "1.0.0",
+  "description": "Kiro AI IDE - Transform vibe coding into viable code",
+  "main": "index.html",
+  "scripts": {
+    "dev": "serve .",
+    "build": "echo 'No build required for static site'",
+    "start": "serve ."
+  },
+  "keywords": [
+    "kiro",
+    "ai",
+    "ide",
+    "development",
+    "spec-driven",
+    "mac",
+    "artificial-intelligence"
+  ],
+  "author": "Kiro",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}

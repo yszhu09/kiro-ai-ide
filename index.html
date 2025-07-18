@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kiro - Transform vibe coding into viable code. The Agentic AI IDE that bridges rapid prototyping and production-ready software.">
+    <meta name="keywords" content="AI IDE, Kiro, Agentic AI, Spec-Driven Development, VS Code, Developer Tools">
+    <meta name="author" content="Kiro">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kiro.dev/">
+    <meta property="og:title" content="Kiro - Transform Vibe Coding into Viable Code">
+    <meta property="og:description" content="The Agentic AI IDE that bridges rapid prototyping and production-ready software">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://kiro.dev/">
+    <meta property="twitter:title" content="Kiro - Transform Vibe Coding into Viable Code">
+    <meta property="twitter:description" content="The Agentic AI IDE that bridges rapid prototyping and production-ready software">
+    
+    <title>Kiro - Transform Vibe Coding into Viable Code</title>
+    
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Aceternity Inspired Critical CSS -->
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* CSS Custom Properties - Aceternity Inspired */
+        :root {
+            --purple-700: #7c3aed;
+            --purple-600: #9333ea;
+            --pink-500: #ec4899;
+            --pink-600: #db2777;
+            --zinc-500: #71717a;
+            --zinc-700: #3f3f46;
+            --zinc-900: #18181b;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --slate-800: #1e293b;
+            --slate-700: #334155;
+            --slate-100: #f1f5f9;
+            --teal-500: #14b8a6;
+            --primary-blue: #0066cc;
+            --primary-blue-dark: #004499;
+            --secondary-gray: #f8f9fa;
+            --text-primary: #2c3e50;
+            --text-secondary: #6c757d;
+            --accent-orange: #ff6b35;
+            --success-green: #28a745;
+            --border-light: #e9ecef;
+            --white: #ffffff;
+            --spacing-xs: 8px;
+            --spacing-sm: 16px;
+            --spacing-md: 24px;
+            --spacing-lg: 32px;
+            --spacing-xl: 48px;
+            --spacing-xxl: 64px;
+        }
+        
+        /* Typography Foundation */
+        html {
+            font-family: "Inter", sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            color: var(--zinc-700);
+            background-color: var(--white);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Heading Hierarchy */
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+            color: var(--zinc-700);
+        }
+        
+        h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-md);
+            color: var(--zinc-700);
+        }
+        
+        h3 {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: var(--spacing-sm);
+            color: var(--zinc-700);
+        }
+        
+        p {
+            margin-bottom: var(--spacing-sm);
+            color: var(--zinc-500);
+        }
+        
+        /* Container System */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+        
+        .section {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--zinc-700);
+            text-decoration: none;
+        }
+        
+        .nav-logo svg {
+            width: 2rem;
+            height: 2rem;
+        }
+        
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--zinc-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--purple-700);
+        }
+        
+        .nav-cta {
+            display: inline-flex;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, var(--purple-700), var(--pink-500));
+            color: white;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-1px);
+        }
+        
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+        }
+        
+        /* Hero Section - Pure Aceternity */
+        .hero {
+            position: relative;
+            padding: 8rem 2rem 4rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-logo {
+            height: 5rem;
+            width: 2.5rem;
+            margin-bottom: 1rem;
+            color: #71717a;
+        }
+        
+        .hero-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 3.5rem;
+            position: relative;
+            text-align: center;
+            color: #3f3f46;
+            line-height: 1.1;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 4.5rem;
+                line-height: 1;
+            }
+        }
+        
+        .gradient-text {
+            position: relative;
+            background: linear-gradient(to right, #7c3aed, #ec4899);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            z-index: 10;
+        }
+        
+        .hero-subtitle {
+            position: relative;
+            font-weight: 400;
+            font-size: 1rem;
+            color: #71717a;
+            letter-spacing: 0.025em;
+            margin-bottom: 5rem;
+            text-align: center;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .hero-subtitle a {
+            font-weight: 600;
+            color: #3f3f46;
+            text-decoration: none;
+        }
+        
+        /* Hero Features Grid */
+        .hero-features {
+            width: 100%;
+            position: relative;
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 2.5rem;
+            max-width: 72rem;
+            margin: 0 auto 5rem auto;
+            padding: 0 0.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-features {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                padding: 0 2rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-features {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+        
+        .feature-card {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 0.75rem;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .feature-icon-container {
+            border-radius: 0.75rem;
+            padding: 0.5rem;
+            border: 2px solid #14b8a6;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            background: white;
+            flex-shrink: 0;
+        }
+        
+        .feature-icon {
+            height: 1rem;
+            width: 1rem;
+            color: #3f3f46;
+        }
+        
+        .feature-content h3 {
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: #3f3f46;
+            letter-spacing: 0.025em;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-content p {
+            color: #3f3f46;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+        
+        /* Glow Button */
+        .glow-button {
+            position: relative;
+            z-index: 10;
+            margin-bottom: 5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+        
+        .glow-button-bg {
+            position: absolute;
+            top: -0.125rem;
+            right: -0.125rem;
+            bottom: -0.125rem;
+            left: -0.125rem;
+            background: linear-gradient(to right, #db2777, #7c3aed);
+            border-radius: 0.5rem;
+            filter: blur(8px);
+            opacity: 0.25;
+            transition: opacity 1s ease;
+            animation: tilt 10s infinite linear;
+        }
+        
+        .glow-button:hover .glow-button-bg {
+            opacity: 0.5;
+            transition-duration: 200ms;
+        }
+        
+        .glow-button-content {
+            position: relative;
+            z-index: 10;
+            padding: 0.75rem 1.5rem;
+            background: white;
+            color: #3f3f46;
+            font-weight: 700;
+            border-radius: 0.5rem;
+            display: block;
+            text-decoration: none;
+        }
+        
+        @keyframes tilt {
+            0%, 50%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            75% { transform: rotate(-1deg); }
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            background: var(--secondary-gray);
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--zinc-700);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--zinc-500);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .workflow-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .workflow-step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: var(--spacing-lg);
+            align-items: flex-start;
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-lg);
+            background: var(--white);
+            border-radius: 16px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .workflow-step:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        }
+        
+        .workflow-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            bottom: -24px;
+            left: 40px;
+            width: 2px;
+            height: 24px;
+            background: var(--primary-blue);
+            opacity: 0.3;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h3 {
+            color: var(--zinc-700);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.25rem;
+        }
+        
+        .step-content p {
+            color: var(--zinc-500);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .step-example {
+            background: var(--secondary-gray);
+            padding: var(--spacing-sm);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: var(--zinc-500);
+            border-left: 3px solid var(--primary-blue);
+        }
+        
+        .step-example strong {
+            color: var(--zinc-700);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: var(--spacing-xxl) 0;
+            background: var(--white);
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .features .feature-card {
+            padding: var(--spacing-xl);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .features .feature-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+            color: var(--purple-700);
+            align-self: center;
+        }
+        
+        .features .feature-title {
+            color: var(--zinc-700);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .features .feature-description {
+            color: var(--zinc-500);
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Tech Foundation Section */
+        .tech-foundation {
+            background: var(--secondary-gray);
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .foundation-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: var(--spacing-xl);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-light);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .foundation-header {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .foundation-icon {
+            font-size: 3rem;
+            line-height: 1;
+            flex-shrink: 0;
+            color: var(--purple-700);
+        }
+        
+        .foundation-content h3 {
+            color: var(--zinc-700);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.75rem;
+        }
+        
+        .foundation-subtitle {
+            color: var(--zinc-500);
+            font-size: 1.125rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .detail-item {
+            padding: var(--spacing-md);
+            background: var(--secondary-gray);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
+        }
+        
+        .detail-item h4 {
+            color: var(--zinc-700);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.125rem;
+        }
+        
+        .detail-item p {
+            color: var(--zinc-500);
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            background: var(--secondary-gray);
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .preview-banner {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: var(--white);
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+            box-shadow: 0 4px 16px rgba(0, 102, 204, 0.2);
+        }
+        
+        .preview-banner h3 {
+            color: var(--white);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.5rem;
+        }
+        
+        .preview-banner p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+            font-size: 1.125rem;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .pricing-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: var(--spacing-xl);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--purple-600);
+            border-width: 2px;
+        }
+        
+        .pricing-card.featured::after {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--purple-700), var(--pink-500));
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+        
+        .pricing-tier {
+            color: var(--zinc-700);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .pricing-amount {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .price-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            line-height: 1;
+        }
+        
+        .price-period {
+            font-size: 1.125rem;
+            color: var(--zinc-500);
+            margin-left: 4px;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .pricing-features li {
+            padding: var(--spacing-xs) 0;
+            color: var(--zinc-500);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--success-green);
+            font-weight: 700;
+            margin-right: var(--spacing-sm);
+            flex-shrink: 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--purple-700), var(--pink-500));
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--purple-700);
+            border: 2px solid var(--purple-700);
+        }
+        
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, var(--purple-700), var(--pink-500));
+            color: var(--white);
+        }
+        
+        /* Get Started Section */
+        .get-started {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+            color: var(--white);
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .get-started-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .get-started h2 {
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .get-started-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.125rem;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .get-started-cta {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-white {
+            background-color: var(--white);
+            color: var(--primary-blue);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-white:hover {
+            background-color: var(--secondary-gray);
+            transform: translateY(-1px);
+        }
+        
+        .btn-outline-white {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-outline-white:hover {
+            background-color: var(--white);
+            color: var(--primary-blue);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--zinc-900);
+            color: var(--white);
+            padding: var(--spacing-xl) 0 var(--spacing-md);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .footer-section h3 {
+            color: var(--white);
+            margin-bottom: var(--spacing-md);
+            font-size: 1.25rem;
+        }
+        
+        .footer-section p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .footer-section ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 0;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 6rem 1rem 2rem 1rem;
+                min-height: 80vh;
+            }
+            
+            .hero-features {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .feature-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .workflow-step {
+                grid-template-columns: 60px 1fr;
+                gap: var(--spacing-md);
+                padding: var(--spacing-md);
+            }
+            
+            .step-number {
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+            
+            .foundation-header {
+                flex-direction: column;
+                text-align: center;
+                gap: var(--spacing-md);
+            }
+            
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .get-started-cta {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .get-started-cta .btn {
+                width: 100%;
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .section {
+                padding: var(--spacing-xl) 0;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+            
+            .btn {
+                padding: 14px 20px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="sr-only">Skip to main content</a>
+    
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="nav-logo">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    Kiro
+                </a>
+                
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="download.html">Download</a></li>
+                </ul>
+                
+                <a href="download.html" class="nav-cta">Download</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <!-- Logo -->
+                <svg class="hero-logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                
+                <h1 id="hero-title" class="hero-title">
+                    AI IDE that 
+                    <span class="gradient-text">
+                        Makes Sense.
+                    </span>
+                </h1>
+                
+                <p class="hero-subtitle">
+                    Transform vibe coding into viable code. Kiro is the Agentic AI IDE that bridges rapid prototyping 
+                    and production-ready software, masterfully created by industry experts with experience at 
+                    <a href="#">Google</a> 
+                    and 
+                    <a href="#">Meta</a>. 
+                    The ideal beginning stage for your next project.
+                </p>
+                
+                <!-- Hero Features -->
+                <div class="hero-features">
+                    <div class="feature-card">
+                        <div class="feature-icon-container">
+                            <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Spec-Driven Development</h3>
+                            <p>Transform natural language ideas into structured requirements and actionable implementation tasks with AI-guided planning.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon-container">
+                            <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>VS Code Compatible</h3>
+                            <p>Built on Code OSS foundation with full VS Code extension compatibility and zero learning curve for developers.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon-container">
+                            <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <div class="feature-content">
+                            <h3>Agentic AI</h3>
+                            <p>Context-aware AI assistance with intelligent automation hooks and external tool integration through MCP.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- CTA Button -->
+                <button class="glow-button">
+                    <div class="glow-button-bg"></div>
+                    <a class="glow-button-content" href="download.html">
+                        Download Kiro
+                    </a>
+                </button>
+            </div>
+        </section>
+        
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works" aria-labelledby="how-it-works-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="how-it-works-title" class="section-title">
+                        How <span class="gradient-text">Kiro</span> Transforms Your Development
+                    </h2>
+                    <p class="section-subtitle">
+                        From concept to code in minutes, not hours. See how Kiro's spec-driven approach revolutionizes development.
+                    </p>
+                </div>
+                
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Describe Your Vision</h3>
+                            <p>
+                                Start with natural language. Describe what you want to build, your requirements, 
+                                constraints, and goals. Kiro understands context and nuance.
+                            </p>
+                            <div class="step-example">
+                                <strong>Example:</strong> "Build a real-time chat app with user authentication, 
+                                message encryption, and file sharing capabilities"
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>AI Generates Specifications</h3>
+                            <p>
+                                Kiro analyzes your requirements and generates detailed technical specifications, 
+                                architecture decisions, and implementation roadmap with best practices.
+                            </p>
+                            <div class="step-example">
+                                <strong>Output:</strong> Technical specs with database schema, API endpoints, 
+                                security considerations, and deployment strategy
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Code Generation & Implementation</h3>
+                            <p>
+                                Watch as Kiro writes production-ready code based on the specifications. 
+                                Complete with tests, documentation, and error handling.
+                            </p>
+                            <div class="step-example">
+                                <strong>Result:</strong> Full-stack application with React frontend, 
+                                Node.js backend, database migrations, and comprehensive test suite
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Review & Iterate</h3>
+                            <p>
+                                Review the generated code, suggest changes, and iterate. Kiro learns from your 
+                                feedback and adapts to your coding style and preferences.
+                            </p>
+                            <div class="step-example">
+                                <strong>Continuous:</strong> Real-time collaboration with AI that understands 
+                                your project context and maintains consistency
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Features Section -->
+        <section id="features" class="features" aria-labelledby="features-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="features-title" class="section-title">
+                        Powerful Features for Modern Development
+                    </h2>
+                    <p class="section-subtitle">
+                        Everything you need to build, deploy, and maintain production-ready applications.
+                    </p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                        </svg>
+                        <h3 class="feature-title">AI-Powered Research</h3>
+                        <p class="feature-description">Intelligent code analysis and automated research capabilities to accelerate your development workflow.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                        </svg>
+                        <h3 class="feature-title">Code Generation</h3>
+                        <p class="feature-description">Generate production-ready code from specifications with intelligent error handling and optimization.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        <h3 class="feature-title">Smart Automation</h3>
+                        <p class="feature-description">Automate repetitive development tasks with context-aware AI that learns from your coding patterns.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                        <h3 class="feature-title">Security First</h3>
+                        <p class="feature-description">Built-in security best practices, vulnerability scanning, and compliance checks for enterprise-grade applications.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                        </svg>
+                        <h3 class="feature-title">Cloud Integration</h3>
+                        <p class="feature-description">Seamless deployment to major cloud platforms with automated CI/CD pipelines and infrastructure as code.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <svg class="feature-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                        <h3 class="feature-title">Team Collaboration</h3>
+                        <p class="feature-description">Real-time collaboration tools, shared workspaces, and integrated project management for development teams.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tech Foundation Section -->
+        <section class="tech-foundation" aria-labelledby="tech-foundation-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="tech-foundation-title" class="section-title">
+                        Built on <span class="gradient-text">Solid Foundations</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Kiro is built on proven technologies and modern development practices.
+                    </p>
+                </div>
+                
+                <div class="foundation-card">
+                    <div class="foundation-header">
+                        <svg class="foundation-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <div class="foundation-content">
+                            <h3>VS Code Compatible</h3>
+                            <p class="foundation-subtitle">
+                                Built on the Code OSS foundation, Kiro provides full compatibility with VS Code extensions, 
+                                themes, and workflows you already know and love.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-grid">
+                        <div class="detail-item">
+                            <h4>Extension Ecosystem</h4>
+                            <p>Access to thousands of VS Code extensions for enhanced functionality and customization.</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Zero Learning Curve</h4>
+                            <p>Familiar interface and shortcuts mean you can start being productive immediately.</p>
+                        </div>
+                        <div class="detail-item">
+                            <h4>Settings Migration</h4>
+                            <p>Import your existing VS Code settings, keybindings, and workspace configurations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Pricing Section -->
+        <section id="pricing" class="pricing" aria-labelledby="pricing-title">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="pricing-title" class="section-title">
+                        Simple, Transparent <span class="gradient-text">Pricing</span>
+                    </h2>
+                    <p class="section-subtitle">
+                        Choose the plan that best fits your development needs.
+                    </p>
+                </div>
+                
+                <div class="preview-banner">
+                    <h3>🚀 Early Access Preview</h3>
+                    <p>
+                        Kiro is currently in preview. Join our beta program and help shape the future of AI-powered development.
+                    </p>
+                </div>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3 class="pricing-tier">Developer</h3>
+                        <div class="pricing-amount">
+                            <span class="price-value">$29</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>Unlimited projects</li>
+                            <li>AI code generation</li>
+                            <li>Basic integrations</li>
+                            <li>Community support</li>
+                            <li>VS Code compatibility</li>
+                        </ul>
+                        <a href="#" class="btn btn-secondary">Start Free Trial</a>
+                    </div>
+                    
+                    <div class="pricing-card featured">
+                        <h3 class="pricing-tier">Team</h3>
+                        <div class="pricing-amount">
+                            <span class="price-value">$79</span>
+                            <span class="price-period">/month</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>Everything in Developer</li>
+                            <li>Team collaboration</li>
+                            <li>Advanced AI models</li>
+                            <li>Priority support</li>
+                            <li>Custom integrations</li>
+                            <li>Advanced security</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Start Free Trial</a>
+                    </div>
+                    
+                    <div class="pricing-card">
+                        <h3 class="pricing-tier">Enterprise</h3>
+                        <div class="pricing-amount">
+                            <span class="price-value">Custom</span>
+                        </div>
+                        <ul class="pricing-features">
+                            <li>Everything in Team</li>
+                            <li>Custom deployment</li>
+                            <li>Dedicated support</li>
+                            <li>SLA guarantees</li>
+                            <li>Custom AI training</li>
+                            <li>Compliance features</li>
+                        </ul>
+                        <a href="#" class="btn btn-secondary">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Get Started Section -->
+        <section id="get-started" class="get-started" aria-labelledby="get-started-title">
+            <div class="container">
+                <div class="get-started-content">
+                    <h2 id="get-started-title">Ready to Transform Your Development?</h2>
+                    <p class="get-started-subtitle">
+                        Join thousands of developers who are already building the future with Kiro. 
+                        Start your free trial today and experience the power of AI-driven development.
+                    </p>
+                    <div class="get-started-cta">
+                        <a href="download.html" class="btn btn-white">Download Kiro</a>
+                        <a href="#" class="btn btn-outline-white">Schedule Demo</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kiro</h3>
+                    <p>
+                        Transform vibe coding into viable code. The Agentic AI IDE that bridges rapid prototyping 
+                        and production-ready software.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Product</h3>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#integrations">Integrations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#community">Community</a></li>
+                        <li><a href="#support">Support</a></li>
+                        <li><a href="#status">Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Kiro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.8)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            }
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .workflow-step, .pricing-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

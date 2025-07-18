@@ -1,0 +1,20 @@
+# Ignore large installer files
+downloads/*.dmg
+downloads/*.exe
+downloads/*.msi
+downloads/*.pkg
+
+# Ignore OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.log
+.vercel

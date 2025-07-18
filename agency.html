@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nexus Digital Agency - Creating web applications and digital experiences that make sense. We build websites for your business that actually convert.">
+    <meta name="keywords" content="web development, digital agency, web apps, website design, UI/UX design, React development">
+    <meta name="author" content="Nexus Digital Agency">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nexusdigital.dev/">
+    <meta property="og:title" content="Nexus Digital Agency - Web Apps that Make Sense">
+    <meta property="og:description" content="Creating web applications and digital experiences that make sense. We build websites for your business that actually convert.">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nexusdigital.dev/">
+    <meta property="twitter:title" content="Nexus Digital Agency - Web Apps that Make Sense">
+    <meta property="twitter:description" content="Creating web applications and digital experiences that make sense. We build websites for your business that actually convert.">
+    
+    <title>Nexus Digital Agency - Web Apps that Make Sense</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* CSS Custom Properties */
+        :root {
+            --purple-700: #7c3aed;
+            --purple-600: #9333ea;
+            --pink-500: #ec4899;
+            --pink-600: #db2777;
+            --zinc-500: #71717a;
+            --zinc-700: #3f3f46;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-900: #111827;
+            --green-500: #10b981;
+            --white: #ffffff;
+            --spacing-4: 1rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-10: 2.5rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            --spacing-20: 5rem;
+            --border-radius-lg: 0.5rem;
+            --border-radius-2xl: 1rem;
+        }
+        
+        /* Typography Foundation */
+        html {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        body {
+            color: var(--zinc-700);
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+        
+        /* Container System */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .max-w-6xl {
+            max-width: 72rem;
+        }
+        
+        .max-w-7xl {
+            max-width: 80rem;
+        }
+        
+        .max-w-2xl {
+            max-width: 42rem;
+        }
+        
+        .max-w-3xl {
+            max-width: 48rem;
+        }
+        
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Flexbox Utilities */
+        .flex {
+            display: flex;
+        }
+        
+        .flex-col {
+            flex-direction: column;
+        }
+        
+        .items-center {
+            align-items: center;
+        }
+        
+        .justify-center {
+            justify-content: center;
+        }
+        
+        /* Grid System */
+        .grid {
+            display: grid;
+        }
+        
+        .grid-cols-1 {
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+        }
+        
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        
+        .gap-6 {
+            gap: 1.5rem;
+        }
+        
+        .gap-8 {
+            gap: 2rem;
+        }
+        
+        /* Spacing */
+        .p-8 {
+            padding: 2rem;
+        }
+        
+        .py-10 {
+            padding-top: 2.5rem;
+            padding-bottom: 2.5rem;
+        }
+        
+        .py-20 {
+            padding-top: 5rem;
+            padding-bottom: 5rem;
+        }
+        
+        .pb-10 {
+            padding-bottom: 2.5rem;
+        }
+        
+        .mt-4 {
+            margin-top: 1rem;
+        }
+        
+        .mt-6 {
+            margin-top: 1.5rem;
+        }
+        
+        .mt-10 {
+            margin-top: 2.5rem;
+        }
+        
+        .mt-16 {
+            margin-top: 4rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        
+        .mb-14 {
+            margin-bottom: 3.5rem;
+        }
+        
+        .mb-20 {
+            margin-bottom: 5rem;
+        }
+        
+        /* Typography */
+        .text-4xl {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+        }
+        
+        .text-7xl {
+            font-size: 4.5rem;
+            line-height: 1;
+        }
+        
+        .text-3xl {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+        }
+        
+        .text-lg {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+        
+        .text-base {
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+        
+        .text-sm {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+        
+        .font-bold {
+            font-weight: 700;
+        }
+        
+        .font-semibold {
+            font-weight: 600;
+        }
+        
+        .font-medium {
+            font-weight: 500;
+        }
+        
+        .font-regular {
+            font-weight: 400;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .tracking-wide {
+            letter-spacing: 0.025em;
+        }
+        
+        .tracking-tight {
+            letter-spacing: -0.025em;
+        }
+        
+        .leading-6 {
+            line-height: 1.5rem;
+        }
+        
+        /* Colors */
+        .text-zinc-500 {
+            color: var(--zinc-500);
+        }
+        
+        .text-zinc-700 {
+            color: var(--zinc-700);
+        }
+        
+        .text-gray-600 {
+            color: var(--gray-600);
+        }
+        
+        .text-gray-700 {
+            color: var(--gray-700);
+        }
+        
+        .text-gray-900 {
+            color: var(--gray-900);
+        }
+        
+        .text-white {
+            color: var(--white);
+        }
+        
+        .bg-white {
+            background-color: var(--white);
+        }
+        
+        .bg-gradient-to-r {
+            background-image: linear-gradient(to right, var(--from), var(--to));
+        }
+        
+        .from-purple-700 {
+            --from: var(--purple-700);
+        }
+        
+        .to-pink-500 {
+            --to: var(--pink-500);
+        }
+        
+        .from-pink-600 {
+            --from: var(--pink-600);
+        }
+        
+        .to-purple-600 {
+            --to: var(--purple-600);
+        }
+        
+        .bg-clip-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+        
+        .text-transparent {
+            color: transparent;
+        }
+        
+        /* Borders */
+        .border {
+            border-width: 1px;
+        }
+        
+        .border-gray-200 {
+            border-color: var(--gray-200);
+        }
+        
+        .rounded-lg {
+            border-radius: var(--border-radius-lg);
+        }
+        
+        .rounded-2xl {
+            border-radius: var(--border-radius-2xl);
+        }
+        
+        /* Position */
+        .relative {
+            position: relative;
+        }
+        
+        .absolute {
+            position: absolute;
+        }
+        
+        .inset-0 {
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .z-10 {
+            z-index: 10;
+        }
+        
+        /* Effects */
+        .overflow-hidden {
+            overflow: hidden;
+        }
+        
+        .blur {
+            filter: blur(8px);
+        }
+        
+        .opacity-25 {
+            opacity: 0.25;
+        }
+        
+        .opacity-50 {
+            opacity: 0.5;
+        }
+        
+        .opacity-0 {
+            opacity: 0;
+        }
+        
+        .opacity-100 {
+            opacity: 1;
+        }
+        
+        /* Animations */
+        .transition {
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms;
+        }
+        
+        .duration-300 {
+            transition-duration: 300ms;
+        }
+        
+        .duration-1000 {
+            transition-duration: 1000ms;
+        }
+        
+        .duration-200 {
+            transition-duration: 200ms;
+        }
+        
+        .group:hover .group-hover\:opacity-50 {
+            opacity: 0.5;
+        }
+        
+        .group:hover .group-hover\:opacity-100 {
+            opacity: 1;
+        }
+        
+        .group:hover .group-hover\:duration-200 {
+            transition-duration: 200ms;
+        }
+        
+        @keyframes tilt {
+            0%, 50%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(1deg);
+            }
+            75% {
+                transform: rotate(-1deg);
+            }
+        }
+        
+        .animate-tilt {
+            animation: tilt 10s infinite linear;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-fadeInUp-delay-1 {
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .animate-fadeInUp-delay-2 {
+            animation: fadeInUp 1.2s ease-out 0.4s both;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 50;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--zinc-700);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--zinc-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--purple-700);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 2rem;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+        }
+        
+        .hero-logo {
+            width: 2.5rem;
+            height: 5rem;
+            margin-bottom: 1rem;
+            color: var(--zinc-500);
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 3.5rem;
+            text-align: center;
+            color: var(--zinc-700);
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1rem;
+            color: var(--zinc-500);
+            letter-spacing: 0.025em;
+            margin-bottom: 5rem;
+            text-align: center;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(to right, var(--purple-700), var(--pink-500));
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        /* Button Styles */
+        .btn {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+            z-index: 10;
+            cursor: pointer;
+        }
+        
+        .btn-glow {
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(to right, var(--pink-600), var(--purple-600));
+            border-radius: var(--border-radius-lg);
+            filter: blur(8px);
+            opacity: 0.25;
+            transition: opacity 1s ease;
+        }
+        
+        .btn:hover .btn-glow {
+            opacity: 0.5;
+            transition-duration: 200ms;
+        }
+        
+        .btn-content {
+            position: relative;
+            z-index: 10;
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            color: var(--zinc-700);
+            font-weight: 700;
+            border-radius: var(--border-radius-lg);
+            display: block;
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+        
+        .service-card {
+            position: relative;
+            border: 1px solid var(--gray-200);
+            border-radius: var(--border-radius-2xl);
+            padding: 2rem;
+            background: var(--white);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .service-icon {
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--purple-700);
+        }
+        
+        .service-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.025em;
+            line-height: 1.5;
+        }
+        
+        .service-description {
+            color: var(--gray-700);
+            letter-spacing: 0.025em;
+            line-height: 1.5;
+        }
+        
+        /* Work Section */
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .work-card {
+            background: var(--white);
+            border-radius: var(--border-radius-2xl);
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+        
+        .work-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .work-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--purple-700), var(--pink-500));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+        
+        .work-content {
+            padding: 1.5rem;
+        }
+        
+        .work-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.5rem;
+        }
+        
+        .work-description {
+            color: var(--gray-600);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .work-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(to right, var(--purple-700), var(--pink-500));
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        /* Testimonial Section */
+        .testimonial {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 5rem 0;
+            margin: 5rem 0;
+        }
+        
+        .testimonial-content {
+            max-width: 48rem;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 2rem;
+        }
+        
+        .testimonial-text {
+            font-size: 1.5rem;
+            color: var(--gray-700);
+            font-style: italic;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .testimonial-avatar {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--purple-700), var(--pink-500));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+        
+        .testimonial-info h4 {
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+        
+        .testimonial-info p {
+            color: var(--gray-600);
+            font-size: 0.875rem;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--gray-900);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section ul li a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.875rem;
+                margin-bottom: 3rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .work-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .testimonial-text {
+                font-size: 1.25rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.5rem;
+            }
+            
+            .hero {
+                padding: 0 1rem;
+            }
+            
+            .service-card {
+                padding: 1.5rem;
+            }
+            
+            .work-content {
+                padding: 1rem;
+            }
+        }
+        
+        /* Accessibility */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--purple-700);
+            color: var(--white);
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+            font-weight: 600;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* Focus States */
+        .btn:focus,
+        .service-card:focus,
+        .work-card:focus,
+        .nav-links a:focus {
+            outline: 3px solid var(--purple-700);
+            outline-offset: 2px;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation -->
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" aria-label="Nexus Digital Agency Home">
+                Nexus
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services" aria-label="Our Services">Services</a></li>
+                <li><a href="#work" aria-label="Our Work">Work</a></li>
+                <li><a href="#about" aria-label="About Us">About</a></li>
+                <li><a href="#contact" aria-label="Contact Us">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="flex flex-col items-center justify-center relative">
+                <!-- Logo Icon -->
+                <svg class="hero-logo animate-float" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                
+                <h1 id="hero-title" class="hero-title animate-fadeInUp">
+                    Web Apps that <span class="gradient-text">Make Sense.</span>
+                </h1>
+                
+                <h2 class="hero-subtitle animate-fadeInUp-delay-1">
+                    We build websites for your business that actually convert. Wonderfully designed, 
+                    masterfully created websites and layouts, created by industry veterans with 
+                    experience at <a href="#" class="font-semibold text-zinc-700">Google</a> and 
+                    <a href="#" class="font-semibold text-zinc-700">Meta</a>. 
+                    The ideal beginning stage for your next project.
+                </h2>
+                
+                <div class="animate-fadeInUp-delay-2">
+                    <a href="#work" class="btn" role="button" aria-label="Explore our work">
+                        <div class="btn-glow animate-tilt"></div>
+                        <span class="btn-content">Explore Work</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonial Section 1 -->
+        <section class="testimonial" aria-labelledby="testimonial-1">
+            <div class="testimonial-content">
+                <blockquote class="testimonial-text">
+                    "Nexus Digital transformed our online presence completely. Their attention to detail 
+                    and modern approach to web development is exactly what we needed. The results speak for themselves."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" aria-hidden="true">
+                        SM
+                    </div>
+                    <div class="testimonial-info">
+                        <h4>Sarah Mitchell</h4>
+                        <p>CEO, TechStart Inc.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Work Section -->
+        <section id="work" class="py-20" aria-labelledby="work-title">
+            <div class="max-w-6xl mx-auto container">
+                <h2 id="work-title" class="text-4xl font-bold text-center text-zinc-700">
+                    Recent <span class="gradient-text">Work</span>
+                </h2>
+                <p class="text-base text-zinc-500 font-regular text-center max-w-2xl mx-auto mt-4">
+                    A look at some of the amazing websites that we've built recently for our clients.
+                </p>
+                
+                <div class="work-grid">
+                    <!-- Project 1 -->
+                    <article class="work-card" tabindex="0">
+                        <div class="work-image" aria-label="E-commerce platform preview">
+                            🛍️
+                        </div>
+                        <div class="work-content">
+                            <h3 class="work-title">E-commerce Platform</h3>
+                            <p class="work-description">
+                                Modern e-commerce solution with advanced inventory management, 
+                                payment processing, and real-time analytics dashboard.
+                            </p>
+                            <div class="work-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                                <span class="tech-tag">Stripe</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 2 -->
+                    <article class="work-card" tabindex="0">
+                        <div class="work-image" aria-label="SaaS dashboard preview">
+                            📊
+                        </div>
+                        <div class="work-content">
+                            <h3 class="work-title">SaaS Analytics Dashboard</h3>
+                            <p class="work-description">
+                                Comprehensive analytics platform with real-time data visualization, 
+                                custom reporting, and team collaboration features.
+                            </p>
+                            <div class="work-tech">
+                                <span class="tech-tag">Vue.js</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                                <span class="tech-tag">D3.js</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 3 -->
+                    <article class="work-card" tabindex="0">
+                        <div class="work-image" aria-label="Corporate website preview">
+                            🏢
+                        </div>
+                        <div class="work-content">
+                            <h3 class="work-title">Corporate Website</h3>
+                            <p class="work-description">
+                                Professional corporate website with content management system, 
+                                multi-language support, and integrated blog platform.
+                            </p>
+                            <div class="work-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">Sanity</span>
+                                <span class="tech-tag">Vercel</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Project 4 -->
+                    <article class="work-card" tabindex="0">
+                        <div class="work-image" aria-label="Mobile app preview">
+                            📱
+                        </div>
+                        <div class="work-content">
+                            <h3 class="work-title">Mobile-First Application</h3>
+                            <p class="work-description">
+                                Cross-platform mobile application with offline capabilities, 
+                                push notifications, and seamless data synchronization.
+                            </p>
+                            <div class="work-tech">
+                                <span class="tech-tag">React Native</span>
+                                <span class="tech-tag">Firebase</span>
+                                <span class="tech-tag">Redux</span>
+                                <span class="tech-tag">AWS</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Testimonial Section 2 -->
+        <section class="testimonial" aria-labelledby="testimonial-2">
+            <div class="testimonial-content">
+                <blockquote class="testimonial-text">
+                    "Working with Nexus was a game-changer. They delivered beyond our expectations 
+                    and helped us achieve a 300% increase in online conversions within the first quarter."
+                </blockquote>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar" aria-hidden="true">
+                        JD
+                    </div>
+                    <div class="testimonial-info">
+                        <h4>James Davidson</h4>
+                        <p>Marketing Director, GrowthCorp</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section id="services" class="py-20" aria-labelledby="services-title">
+            <div class="max-w-7xl mx-auto container">
+                <div class="max-w-2xl mx-auto text-center pb-10">
+                    <h2 id="services-title" class="text-3xl font-medium tracking-tight text-gray-900">
+                        We handle just about everything!
+                    </h2>
+                    <p class="mt-4 text-lg text-gray-600">
+                        We handle everything from design to deployment to get your website 
+                        shipped and ready to go!
+                    </p>
+                </div>
+                
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card" tabindex="0">
+                        <svg class="service-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <h3 class="service-title">Web Development</h3>
+                        <p class="service-description">
+                            Custom web applications built with modern frameworks and technologies. 
+                            From simple landing pages to complex web applications.
+                        </p>
+                    </div>
+                    
+                    <!-- Service 2 -->
+                    <div class="service-card" tabindex="0">
+                        <svg class="service-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                        </svg>
+                        <h3 class="service-title">Mobile Development</h3>
+                        <p class="service-description">
+                            Cross-platform mobile applications that work seamlessly across iOS and Android. 
+                            Native performance with shared codebase.
+                        </p>
+                    </div>
+                    
+                    <!-- Service 3 -->
+                    <div class="service-card" tabindex="0">
+                        <svg class="service-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"/>
+                        </svg>
+                        <h3 class="service-title">UI/UX Design</h3>
+                        <p class="service-description">
+                            User-centered design that prioritizes usability and conversion. 
+                            Beautiful interfaces that users love to interact with.
+                        </p>
+                    </div>
+                    
+                    <!-- Service 4 -->
+                    <div class="service-card" tabindex="0">
+                        <svg class="service-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                        <h3 class="service-title">Performance Optimization</h3>
+                        <p class="service-description">
+                            Lightning-fast websites that rank well in search engines. 
+                            Optimized for speed, accessibility, and SEO performance.
+                        </p>
+                    </div>
+                    
+                    <!-- Service 5 -->
+                    <div class="service-card" tabindex="0">
+                        <svg class="service-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                        <h3 class="service-title">Security & Maintenance</h3>
+                        <p class="service-description">
+                            Comprehensive security audits and ongoing maintenance to keep your 
+                            website secure, updated, and performing at its best.
+                        </p>
+                    </div>
+                    
+                    <!-- Service 6 -->
+                    <div class="service-card" tabindex="0">
+                        <svg class="service-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+                        </svg>
+                        <h3 class="service-title">Cloud Infrastructure</h3>
+                        <p class="service-description">
+                            Scalable cloud solutions that grow with your business. 
+                            Reliable hosting, automated deployments, and 24/7 monitoring.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA Section -->
+        <section class="py-20 bg-gradient-to-r from-purple-700 to-pink-500" aria-labelledby="cta-title">
+            <div class="max-w-4xl mx-auto text-center container">
+                <h2 id="cta-title" class="text-4xl font-bold text-white mb-6">
+                    Ready to Build Something Amazing?
+                </h2>
+                <p class="text-xl text-white opacity-90 mb-8 max-w-2xl mx-auto">
+                    Let's discuss your project and create something extraordinary together. 
+                    Get in touch with our team today.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#contact" class="btn bg-white text-purple-700 font-semibold px-8 py-3 rounded-lg hover:bg-gray-100 transition duration-300">
+                        Start Your Project
+                    </a>
+                    <a href="#work" class="btn border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white hover:text-purple-700 transition duration-300">
+                        View Our Work
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Nexus Digital</h3>
+                    <p class="text-gray-400">
+                        Creating web applications and digital experiences that make sense. 
+                        We build websites for your business that actually convert.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Mobile Development</a></li>
+                        <li><a href="#services">UI/UX Design</a></li>
+                        <li><a href="#services">Performance Optimization</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#work">Our Work</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#careers">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul>
+                        <li><a href="#" aria-label="Twitter">Twitter</a></li>
+                        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+                        <li><a href="#" aria-label="GitHub">GitHub</a></li>
+                        <li><a href="#" aria-label="Dribbble">Dribbble</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Nexus Digital Agency. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.8)';
+            }
+        });
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .work-card').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Add hover effects for service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Keyboard navigation support
+        document.querySelectorAll('.service-card, .work-card').forEach(card => {
+            card.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    this.click();
+                }
+            });
+        });
+        
+        // Accessibility: Respect user's motion preferences
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('[class*="animate"]').forEach(el => {
+                el.style.animation = 'none';
+            });
+        }
+    </script>
+</body>
+</html>
